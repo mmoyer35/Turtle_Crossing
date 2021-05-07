@@ -1,6 +1,7 @@
 from turtle import Turtle
 import random
 
+# set constants for car color, initial move speed and the speed increment upon leveling up
 COLORS = ["red", "orange", "yellow", "green", "blue", "purple"]
 STARTING_MOVE_DISTANCE = 5
 MOVE_INCREMENT = 10
@@ -12,6 +13,7 @@ class CarManager:
         self.all_cars = []
         self.car_speed = STARTING_MOVE_DISTANCE
 
+    # 1 in 6 chance of creating a car, increase difficulty by lowering randint
     def create_car(self):
         random_chance = random.randint(1, 6)
         if random_chance == 1:
@@ -23,9 +25,11 @@ class CarManager:
             new_car.goto(300, random_y)
             self.all_cars.append(new_car)
 
+    #move the entire list of cars to the left (backward) an increment of the current car speed 
     def move_cars(self):
         for car in self.all_cars:
             car.backward(self.car_speed)
 
+     
     def level_up(self):
         self.car_speed += MOVE_INCREMENT
